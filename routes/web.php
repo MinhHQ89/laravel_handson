@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminNewsController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
@@ -64,3 +65,18 @@ Route::get('/admin', function () {
 // Validation route to show form
 Route::get('/admin/create', [PostController::class, 'showform']);
 Route::post('/admin/create', [PostController::class, 'validationform']);
+
+// Route to truncate 'news' table
+Route::get('/truncate-news', function () {
+    \DB::table('news')->truncate();
+    return "Table news truncated";
+});
+
+// CRUD
+Route::get('/admin/news/create', [AdminNewsController::class, 'create'])->name('admin.news.create');
+Route::post('/admin/news/store', [AdminNewsController::class, 'store'])->name('admin.news.store');
+Route::get('/admin/news', [AdminNewsController::class, 'index'])->name('admin.news.index');
+Route::get('/admin/news/{id}', [AdminNewsController::class, 'show'])->name('admin.news.show');
+Route::get('/admin/news/edit/{id}', [AdminNewsController::class, 'edit'])->name('admin.news.edit');
+Route::patch('/admin/news/update/{id}', [AdminNewsController::class, 'update'])->name('admin.news.update');
+Route::delete('/admin/news/delete/{id}', [AdminNewsController::class, 'destroy'])->name('admin.news.destroy');
