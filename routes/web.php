@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,11 @@ Route::get('/test-news', function () {
     ]);
 });
 
+// Admin route protected by 'checklogin' middleware
 Route::get('/admin', function () {
     return view('admin.index');
 })->middleware('checklogin');
+
+// Validation route to show form
+Route::get('/admin/create', [PostController::class, 'showform']);
+Route::post('/admin/create', [PostController::class, 'validationform']);
