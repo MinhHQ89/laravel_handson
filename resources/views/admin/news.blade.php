@@ -1,20 +1,20 @@
 <h1>{{ $pageName }}</h1>
-<table border="1">
-    <thead>
+<table border="1" style="border-collapse: collapse;">
+    <thead style="background:#4e73df; color:white;">
         <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Summary</th>
-            <th>Tools</th>
+            <th style="padding:10px;">ID</th>
+            <th style="padding:10px;">Title</th>
+            <th style="padding:10px;">Summary</th>
+            <th style="padding:10px;">Tools</th>
         </tr>
     </thead>
     <tbody>
         @foreach($news as $row)
         <tr>
-            <td>{{$row->id}}</td>
-            <td><a href="/admin/news/{{$row->id}}">{{$row->title}}</a></td>
-            <td>{{$row->summary}}</td>
-            <td>
+            <td style="padding:10px;">{{$row->id}}</td>
+            <td style="padding:10px;"><a href="/admin/news/{{$row->id}}">{{$row->title}}</a></td>
+            <td style="padding:10px;">{{$row->summary}}</td>
+            <td style="padding:10px;">
                 <a href="/admin/news/edit/{{$row->id}}">Edit</a> |
                 <form style="display:inline;" method="POST" action="/admin/news/delete/{{$row->id}}">
                     @method('DELETE')
